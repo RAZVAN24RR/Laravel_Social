@@ -19,7 +19,9 @@ Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [MessageController::class, 'index'])->name('home');
     Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
+    Route::delete('/messages/{id}', [MessageController::class, 'destroy'])->name('messages.destroy');
 });
